@@ -1,0 +1,9 @@
+@layer base {
+  body {
+    @apply relative h-screen font-primary bg-secondary text-black m-0 p-0 flex flex-col justify-between;
+  }
+
+  html {
+    @apply scrollbar-thin scrollbar-thumb-neutral-400 scrollbar-track-secondary;
+  }
+}

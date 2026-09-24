@@ -1,0 +1,19 @@
+---
+import type { infoCardData } from '@components/molecules/InfoCard/InfoCard.astro';
+import InfoCard from '@components/molecules/InfoCard/InfoCard.astro';
+
+export interface infoCardListData {
+  items: infoCardData[];
+}
+
+export interface Props {
+  data: infoCardListData;
+}
+
+const { data } = Astro.props;
+const { items } = data;
+---
+
+<section class="flex flex-col gap-5 overflow-x-hidden max-w-big lg:gap-20">
+  {items && items.map((item, index) => <InfoCard data={item} index={index} />)}
+</section>

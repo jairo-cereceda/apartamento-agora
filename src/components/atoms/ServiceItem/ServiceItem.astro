@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface serviceItemData {
+  icon: string;
+  text: string;
+}
+
+export interface Props {
+  data: serviceItemData;
+}
+
+const { data } = Astro.props;
+const { icon, text } = data;
+---
+
+<div class="flex flex-col items-center justify-center lg:gap-4">
+  <Icon name={icon} size="48" class="text-primary lg:scale-150" />
+  <p class="text-primary">{text}</p>
+</div>

@@ -1,0 +1,55 @@
+---
+import { getImageMetadata } from '@utils/getImage';
+import { Image } from 'astro:assets';
+
+export interface ctaData {
+  link: string;
+  linkText: string;
+  text: string;
+  imgSrc?: string;
+}
+
+export interface Props {
+  data: ctaData;
+}
+
+const { data } = Astro.props;
+const { text, link, linkText, imgSrc } = data;
+let metadata;
+
+if (imgSrc) {
+  metadata = await getImageMetadata(imgSrc);
+}
+---
+
+<section class="flex flex-col gap-4 w-full py-5 max-w-medium">
+  <div
+    class="relative transition-all duration-500 opacity-0 lg:opacity-100"
+    data-info-block
+  >
+    <h2
+      class="w-full top-4 text-center text-xl font-primary text-primary font-semibold z-10 absolute lg:text-3xl"
+    >
+      {text}
+    </h2>
+    <a
+      href={link}
+      class="px-8 p-2 text-white bg-primary z-10 rounded-tr-2xl rounded-bl-2xl text-center font-semibold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:text-2xl transition-all duration-150 hover:rounded-bl-none hover:rounded-tr-none hover:rounded-br-2xl hover:rounded-tl-2xl hover:bg-primary-dark active:bg-primary-dark"
+      >{linkText}</a
+    >
+
+    <div class="absolute w-full h-full top-0 left-0 bg-white/50"></div>
+
+    {
+      imgSrc && metadata && (
+        <Image
+          src={metadata}
+          width={metadata.width}
+          height={metadata.height}
+          class="rounded-xl"
+          alt=""
+        />
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,60 @@
+@theme {
+  /*Fonts*/
+  --font-primary: 'Faculty Glyphic', sans-serif;
+  --font-secondary: 'Eagle Lake', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /*Measures*/
+  --spacing-small: 10rem;
+  --spacing-medium-small: 20rem;
+  --spacing-medium: 40rem;
+  --spacing-medium-big: 45rem;
+  --spacing-big: 70rem;
+
+  /*Colors*/
+  --color-primary: #13154f;
+  --color-secondary: #ebebeb;
+  --color-black: #0e0e10;
+  --color-white: #fcfdff;
+
+  --color-primary-dark: #0b0c2e;
+  --color-black-light: #0e0e1070;
+
+  /*Shadows*/
+  --shadow-white-extended: 0 0 0 100vmax var(--color-white);
+
+  /*Aspects*/
+  --aspect-banner: 4/1;
+
+  /*Animations*/
+  --animate-nervous: nervous-bounce 2s ease-in-out infinite;
+
+  @keyframes nervous-bounce {
+    0%,
+    10% {
+      transform: translateY(0);
+    }
+    25% {
+      transform: translateY(-2px);
+    }
+    35% {
+      transform: translateY(1px);
+    }
+    50% {
+      transform: translateY(-1px);
+    }
+    75% {
+      transform: translateY(2px);
+    }
+    99% {
+      transform: translateY(0);
+    }
+  }
+}
+
+@utility bleed-x {
+  clip-path: inset(0 -100vw 0 -100vw);
+}

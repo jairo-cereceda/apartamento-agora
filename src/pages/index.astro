@@ -1,0 +1,47 @@
+---
+import Hero from '@components/organisms/Hero/Hero.astro';
+import Layout from '../layouts/Layout.astro';
+import BeltLayout from '@layouts/BeltLayout.astro';
+import ServiceItemList from '@components/organisms/ServiceItemList/ServiceItemList.astro';
+import InfoCardList from '@components/organisms/InfoCardList/infoCardList.astro';
+import Ubication from '@components/organisms/Ubication/Ubication.astro';
+import Contact from '@components/organisms/Contact/Contact.astro';
+import CTA from '@components/molecules/CTA/CTA.astro';
+import { Icon } from 'astro-icon/components';
+import { hero, services, info, map, cta } from '@data/index.js';
+---
+
+<Layout
+  pageTitle="Apartamento Agora | Alojamiento en Las Redes en El Puerto de Santa María"
+>
+  <Hero data={hero} />
+
+  <div>
+    <div
+      data-arrow
+      class="lg:hidden z-20 transition-all relative -top-6 duration-3000 opacity-0 flex justify-center items-center h-8"
+    >
+      <Icon
+        name="arrow-down"
+        size="64"
+        class="text-primary animate-nervous"
+        aria-label="Desliza hacia abajo"
+      />
+    </div>
+    <BeltLayout>
+      <InfoCardList data={info} />
+      <ServiceItemList data={services} />
+    </BeltLayout>
+    <Ubication data={map} />
+  </div>
+
+  <BeltLayout>
+    <div
+      data-info-block
+      class="flex flex-col gap-10 transition-all duration-500 opacity-0 lg:flex-row lg:items-center lg:bg-white lg:p-4 lg:rounded-2xl mb-10"
+    >
+      <CTA data={cta} />
+      <Contact />
+    </div>
+  </BeltLayout>
+</Layout>

@@ -1,0 +1,30 @@
+---
+import type { serviceItemData } from '@components/atoms/ServiceItem/ServiceItem.astro';
+import ServiceItem from '@components/atoms/ServiceItem/ServiceItem.astro';
+
+export interface serviceItemListData {
+  items: serviceItemData[];
+  title: string;
+}
+
+export interface Props {
+  data: serviceItemListData;
+}
+
+const { data } = Astro.props;
+const { items, title } = data;
+---
+
+<section
+  data-info-block
+  class="flex flex-col gap-4 transition-all duration-500 opacity-0 bg-white shadow-white-extended bleed-x py-8 md:py-16 lg:gap-8"
+>
+  <h2
+    class="font-secondary text-center text-2xl font-semibold text-primary lg:text-4xl"
+  >
+    {title}
+  </h2>
+  <div class="flex flex-col gap-2 md:grid md:grid-cols-3 lg:gap-y-8">
+    {items.map((item) => <ServiceItem data={item} />)}
+  </div>
+</section>

@@ -1,0 +1,124 @@
+---
+import { getImageMetadata } from '@utils/getImage';
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+export interface heroData {
+  imgSrc: string;
+  title: string;
+  text: string;
+}
+
+export interface Props {
+  data: heroData;
+}
+
+const { data } = Astro.props;
+const { imgSrc, title, text } = data;
+
+const metadata = await getImageMetadata(imgSrc);
+---
+
+<section class="w-full h-[80vh] relative overflow-hidden lg:mb-10">
+  <div
+    id="hero-info"
+    class="p-4 absolute bottom-5 lg:top-1/2 lg:bg-transparent lg:left-1/2 lg:-translate-x-1/2 lg:bottom-0 lg:rounded-tr-2xl lg:rounded-bl-2xl shadow-white z-10 bg-white/80 text-primary transition-all duration-2000 opacity-0 translate-x-[-50%]"
+  >
+    <h1
+      class="font-secondary lg:text-center text-xl lg:text-6xl lg:mb-10 lg:drop-shadow-[0_0_5px_rgba(255,255,255,1)] lg:filter"
+    >
+      {title}
+    </h1>
+    <p
+      class="lg:text-3xl lg:text-center lg:drop-shadow-[0_0_5px_rgba(255,255,255,1)] lg:filter"
+    >
+      {text}
+    </p>
+  </div>
+  <div
+    data-arrow
+    class="hidden absolute bottom-5 z-20 transition-all duration-3000 opacity-0 lg:block lg:bg-transparent lg:left-1/2 lg:-translate-x-1/2"
+  >
+    <Icon
+      name="arrow-down"
+      size="64"
+      class="text-primary animate-nervous"
+      aria-label="Desliza hacia abajo"
+    />
+  </div>
+  <div
+    data-opacity-animation="20"
+    class="absolute top-20 -right-2 transition-all duration-2000 opacity-0"
+  >
+    <Icon
+      name="branch"
+      size="200"
+      class="-rotate-65 text-primary -scale-x-100 md:scale-150"
+    />
+  </div>
+  <div
+    data-opacity-animation="20"
+    class="hidden absolute top-40 -left-2 md:block transition-all duration-2000 opacity-0"
+  >
+    <Icon
+      name="branch"
+      size="200"
+      class="rotate-90 text-primary md:scale-150"
+    />
+  </div>
+  <Image
+    src={metadata}
+    width={metadata.width}
+    height={metadata.height}
+    loading="eager"
+    fetchpriority="high"
+    class="object-cover h-full"
+    alt=""
+  />
+  <div
+    class="absolute bottom-0 left-0 w-full h-[20%] -mb-px bg-linear-to-t from-secondary to-transparent"
+  >
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const opacityItems = document.querySelectorAll<HTMLElement>(
+      '[data-opacity-animation]'
+    );
+    const heroInfo = document.getElementById('hero-info');
+    const arrows = document.querySelectorAll('[data-arrow]');
+
+    opacityItems?.forEach((item) => {
+      requestAnimationFrame(() => {
+        item.classList.add('opacity-20');
+        item.classList.remove('opacity-0');
+      });
+    });
+
+    setTimeout(() => {
+      heroInfo?.classList.remove('opacity-0');
+      heroInfo?.classList.remove('translate-x-[-50%]');
+    }, 500);
+
+    const OFFSET = 100;
+
+    const handleScroll = () => {
+      if (!arrows) return;
+
+      arrows.forEach((arrow) => {
+        if (window.scrollY > OFFSET) {
+          arrow.classList.add('opacity-0');
+          arrow.classList.remove('opacity-100');
+        } else {
+          arrow.classList.add('opacity-100');
+          arrow.classList.remove('opacity-0');
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    handleScroll();
+  });
+</script>

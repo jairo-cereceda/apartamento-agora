@@ -1,0 +1,23 @@
+/*Eagle Lake*/
+@font-face {
+  font-family: 'Eagle Lake';
+  src:
+    url('/fonts/EagleLake/EagleLake-Regular.woff2') format('woff2'),
+    url('/fonts/EagleLake/EagleLake-Regular.woff') format('woff'),
+    url('/fonts/EagleLake/EagleLake-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*Faculty Glyphic*/
+@font-face {
+  font-family: 'Faculty Glyphic';
+  src:
+    url('/fonts/FacultyGlyphic/FacultyGlyphic-Regular.woff2') format('woff2'),
+    url('/fonts/FacultyGlyphic/FacultyGlyphic-Regular.woff') format('woff'),
+    url('/fonts/FacultyGlyphic/FacultyGlyphic-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

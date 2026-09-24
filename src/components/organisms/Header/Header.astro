@@ -1,0 +1,31 @@
+---
+import { Image } from 'astro:assets';
+import favicon from '@public/favicon.png';
+---
+
+<header class="w-full fixed z-20 p-4 bg-linear-to-b from-black to-transparent">
+  <nav>
+    <ul class="w-full flex justify-between items-center">
+      <li>
+        <a href="/" aria-label="Ir al inicio">
+          <Image
+            src={favicon}
+            width={48}
+            height={48}
+            alt="Apartamento Agora"
+            class="w-12"
+          />
+        </a>
+      </li>
+
+      <li>
+        <a
+          href="https://booking.com"
+          class="text-white font-semibold tracking-wide drop-shadow-[0_0_2px_rgba(0,0,0,1)] filter
+          after:content-[''] after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100 whitespace-nowrap"
+          >Reservar</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>

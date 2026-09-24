@@ -1,0 +1,19 @@
+---
+import ContactForm from '@components/molecules/ContactForm/ContactForm.astro';
+import { Icon } from 'astro-icon/components';
+---
+
+<section
+  class="bg-white p-2 rounded-lg flex flex-col gap-4 text-primary lg:h-full lg:justify-center lg:border lg:border-primary"
+>
+  <h2 class="text-center text-xl font-semibold">¿Tienes alguna duda?</h2>
+  <button
+    data-open-fictional-popup
+    class="p-4 bg-primary text-white font-semibold rounded-2xl flex gap-3 justify-center items-center cursor-pointer transition-colors duration-150 hover:bg-primary-dark active:bg-primary-dark"
+    ><Icon name="whatsapp" size="24" class="text-white" /> Háblanos por whatsapp</button
+  >
+
+  <div class="w-full h-0.5 bg-primary"></div>
+
+  <ContactForm />
+</section>

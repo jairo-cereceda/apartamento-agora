@@ -1,0 +1,45 @@
+---
+import { getImageMetadata } from '@utils/getImage';
+import { Image } from 'astro:assets';
+
+export interface infoCardData {
+  imgSrc: string;
+  title: string;
+  text: string;
+}
+
+export interface Props {
+  data: infoCardData;
+  index: number;
+}
+
+const { data, index } = Astro.props;
+const { imgSrc, title, text } = data;
+
+const metadata = await getImageMetadata(imgSrc);
+const isOdd = index % 2 !== 0;
+---
+
+<article
+  class={`flex flex-col gap-4 lg:grid lg:grid-cols-2 lg:items-end lg:gap-10 `}
+>
+  <Image
+    data-info-block
+    src={metadata}
+    width={metadata.width}
+    height={metadata.height}
+    alt=""
+    class={`rounded-lg aspect-square mx-auto object-cover md:aspect-video opacity-0 lg:aspect-square transition-all duration-500 md:w-full lg:w-auto  ${isOdd ? 'lg:order-2 translate-x-[50%]' : 'translate-x-[-50%] lg:order-1'}`}
+  />
+  <div
+    data-info-block
+    class={`flex flex-col gap-4 text-primary bg-white relative transition-all z-50 duration-500 opacity-0 p-3 -top-10 ${isOdd ? 'translate-x-[-50%] lg:order-1 -left-2 pl-3 rounded-tr-xl lg:rounded-tr-none lg:rounded-tl-xl lg:left-15' : 'translate-x-[50%] lg:order-2 rounded-tl-xl -right-2 lg:rounded-none lg:rounded-tr-xl lg:-left-15'}`}
+  >
+    <h2 class="text-3xl tracking-wider lg:font-semibold">
+      {title}
+    </h2>
+    <p class="md:text-xl lg:text-3xl">
+      {text}
+    </p>
+  </div>
+</article>
